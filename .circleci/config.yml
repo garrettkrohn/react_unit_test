@@ -11,7 +11,7 @@ jobs:
       - checkout: 
           path: .
   build_front_end:
-    working_directory: .
+    working_directory: ~/build
     executor: node/default
     steps:
       - checkout:
@@ -29,7 +29,8 @@ jobs:
             - .
       - save_cache:
           key: npm-cache
-          paths: ./node_modules
+          paths: 
+            - ./node_modules
   
 
 workflows:
