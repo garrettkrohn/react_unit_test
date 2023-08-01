@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.2
+
+jobs:
+  build_front_end:
+    working_directory: .
+    executor: node/default
+    steps:
+      - checkout:
+        path: .
+      - node/install-packages:
+          pkg-manager: npm
+      - restore_cache:
+          key: npm-cache
+      - run:
+          command: npm run build
+          name: Build app
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+      - save_cache:
+          key: npm-cache
+          paths: ./node_modules
+
+workflows:
+  my-workflow:
+    jobs: build_front_end
