@@ -4,12 +4,18 @@ orbs:
   node: circleci/node@5.0.2
 
 jobs:
+  test_front_end:
+    working_directory: .
+    executor: node/default
+    steps:
+      - checkout: 
+          path: .
   build_front_end:
     working_directory: .
     executor: node/default
     steps:
       - checkout:
-        path: .
+          path: .
       - node/install-packages:
           pkg-manager: npm
       - restore_cache:
@@ -24,7 +30,10 @@ jobs:
       - save_cache:
           key: npm-cache
           paths: ./node_modules
+  
 
 workflows:
   my-workflow:
-    jobs: build_front_end
+    jobs: 
+      - test_front_end
+      - build_front_end
