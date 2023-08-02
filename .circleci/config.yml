@@ -5,37 +5,24 @@ orbs:
 
 jobs:
   test_front_end:
-    working_directory: .
+    working_directory: ~/app
     executor: node/default
     steps:
-      - run: whoami
-      - checkout
-      - run: cd ./app && npm test
-  # build_front_end:
-  #   working_directory: ~/build
-  #   executor: node/default
-  #   steps:
-  #     - checkout:
-  #         path: .
-  #     - node/install-packages:
-  #         pkg-manager: npm
-  #     - restore_cache:
-  #         key: npm-cache
-  #     - run:
-  #         command: npm run build
-  #         name: Build app
-  #     - persist_to_workspace:
-  #         root: ~/project
-  #         paths:
-  #           - .
-  #     - save_cache:
-  #         key: npm-cache
-  #         paths: 
-  #           - ./node_modules
-  
+      - checkout:
+          path: ~/app
+      - run: npm install
+      - run: npm test
+  build_front_end:
+    working_directory: ~/app
+    executor: node/default
+    steps:
+      - checkout:
+          path: ~/app
+      - run: npm install
+      - run: npm run build
 
 workflows:
   my-workflow:
-    jobs: 
+    jobs:
       - test_front_end
-      # - build_front_end
+      - build_front_end
