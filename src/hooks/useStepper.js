@@ -7,12 +7,14 @@ const useStepper = () => {
   const minimumStep = 0;
 
   const increment = () => {
+    console.log("increment");
     if (step < maximumStep) {
       setStep(step + 1);
     }
   };
 
   const decrement = () => {
+    console.log("decrement");
     if (step > minimumStep) {
       setStep(step - 1);
     }
