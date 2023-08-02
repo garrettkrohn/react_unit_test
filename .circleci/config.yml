@@ -11,20 +11,18 @@ jobs:
       - checkout:
           path: ~/app
       - run: npm install
-      - run:
-          name: Install JUnit coverage reporter
-          command: yarn add --dev jest-junit
-      - run:
-          name: Run tests with JUnit as reporter
-          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./reports/
-      - store_test_results:
-          path: ./reports/
-
+      - run: npm test
+  build_front_end:
+    working_directory: ~/app
+    executor: node/default
+    steps:
+      - checkout:
+          path: ~/app
+      - run: npm install
+      - run: npm run build
 
 workflows:
   my-workflow:
     jobs: 
       - test_front_end
-      # - build_front_end
+      - build_front_end
