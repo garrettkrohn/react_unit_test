@@ -12,30 +12,8 @@ jobs:
           path: ~/app
       - run: npm install
       - run: npm test
-  # build_front_end:
-  #   working_directory: ~/build
-  #   executor: node/default
-  #   steps:
-  #     - checkout:
-  #         path: .
-  #     - node/install-packages:
-  #         pkg-manager: npm
-  #     - restore_cache:
-  #         key: npm-cache
-  #     - run:
-  #         command: npm run build
-  #         name: Build app
-  #     - persist_to_workspace:
-  #         root: ~/project
-  #         paths:
-  #           - .
-  #     - save_cache:
-  #         key: npm-cache
-  #         paths: 
-  #           - ./node_modules
-  
 
- workflows:
+workflows:
   my-workflow:
     jobs: 
       - test_front_end
