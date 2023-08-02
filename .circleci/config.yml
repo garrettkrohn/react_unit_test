@@ -5,11 +5,11 @@ orbs:
 
 jobs:
   test_front_end:
-    working_directory: ~/project/app 
+    working_directory: ~/app
     executor: node/default
     steps:
       - checkout:
-          path: ~/project
+          path: ~/app
   # build_front_end:
   #   working_directory: ~/build
   #   executor: node/default
