@@ -12,6 +12,9 @@ jobs:
           path: ~/app
       - run: npm install
       - run: npm test
+      - store_test_results:
+          path: test-results
+
 
 workflows:
   my-workflow:
