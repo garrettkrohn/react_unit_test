@@ -9,6 +9,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - run: whoami
       - run: cd ./app && npm test
   # build_front_end:
   #   working_directory: ~/build
