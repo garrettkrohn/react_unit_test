@@ -5,12 +5,11 @@ orbs:
 
 jobs:
   test_front_end:
-    working_directory: .
+    working_directory: ~/project/app 
     executor: node/default
     steps:
-      - run: whoami
-      - checkout
-      - run: cd ./app && npm test
+      - checkout:
+          path: ~/project
   # build_front_end:
   #   working_directory: ~/build
   #   executor: node/default
