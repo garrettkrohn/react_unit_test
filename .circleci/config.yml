@@ -8,8 +8,8 @@ jobs:
     working_directory: .
     executor: node/default
     steps:
-      - checkout
       - run: whoami
+      - checkout
       - run: cd ./app && npm test
   # build_front_end:
   #   working_directory: ~/build
